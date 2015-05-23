@@ -11,4 +11,4 @@ fi
 export NODE_PATH=$NODE_PATH:lib
 
 cd $APPDIR
-exec node bench.js "$@"
+exec /home/vagrant/.nvm/versions/node/v0.12.3/bin/node bench.js "$@"

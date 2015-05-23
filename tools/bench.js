@@ -248,6 +248,7 @@ function checkArticle(articleid, data, callback){
 
     if (initialDataSet.length < 1) {
       callback({summary:'success', articleid:0});
+      return;
     }
     var article = initialDataSet[Math.floor(Math.random() * initialDataSet.length)];
     articleid = article.id;
@@ -284,7 +285,7 @@ function checkArticle(articleid, data, callback){
 
       var summary = (checkresult.postlink && checkresult.latestcomments && checkresult.title && checkresult.created && checkresult.body);
       checkresult.summary = (summary ? 'success' : 'fail');
-      if (failed_reasons.length > 0)
+      if (failed_reasons.length > 0) 
         checkresult.reason = failed_reasons;
       callback(checkresult);
     });

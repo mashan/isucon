@@ -3,12 +3,11 @@ var jsdom = require('jsdom');
 var parseHtml = exports.parseHtml = function(content, callback){
   jsdom.env({
     html: content,
-    scripts: [
-      'http://code.jquery.com/jquery.js'
-    ]
-  }, function (err, window) {
-    var $ = window.jQuery;
-    callback(window.$);
+    scripts: ['http://code.jquery.com/jquery.js'],
+    done: function (err, window) {
+      var $ = window.jQuery;
+      callback(window.$);
+    }
   });
 };
 

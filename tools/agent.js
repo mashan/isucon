@@ -5,7 +5,7 @@ var express = require('express'),
     fs = require('fs'),
     http = require('http'),
     child = require('child_process'),
-    app = express.createServer();
+    app = express();
 
 var conf = JSON.parse(fs.readFileSync(__dirname + '/config.json'));
 
@@ -15,14 +15,14 @@ function error_handle(req, res, err){
   res.send(err, 500);
 };
 
-app.configure(function(){
+//app.configure(function(){
   app.use(express.logger('default'));
   app.use(express.methodOverride());
   app.use(express.bodyParser());
 
   app.use(express.errorHandler());
   app.use(app.router);
-});
+//});
 
 var executings = {};
 
