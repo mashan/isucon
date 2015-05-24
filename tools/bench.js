@@ -7,7 +7,7 @@ var http_load = require('http_load'),
     engine = require('bench_engine.js');
 
 var HTTP_LOAD_PARALLEL = 2, //10,
-    HTTP_LOAD_SECONDS = 60, //180,
+    HTTP_LOAD_SECONDS = 45, //180,
     COMMENT_POST_PER_MIN_MAIN = 40,
     COMMENT_POST_PER_MIN_OPT = 20,
     COMMENT_SIZE = 200;
@@ -299,7 +299,7 @@ function output(dirpath, load_result, checker_result, poster_result, callback){
     load_result.response = {success:0,error:0};
       
   if (checker_result === null)
-    checker_result = {summary:'checker cannot receive response. http_load error, or reverse proxy too heavy.'};
+    checker_result = {summary:'error', reason:['checker cannot receive response. http_load error, or reverse proxy too heavy.']};
   if (poster_result === null)
     poster_result = {summary:'not run'};
 

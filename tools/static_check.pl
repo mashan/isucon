@@ -45,7 +45,12 @@ for my $url ( shuffle @urls )  {
 
 my %summary;
 $summary{summary} = ( keys %error ) ? 'fail' : 'success';
-$summary{errors} = \%error if keys %error;
+if (keys %error) {
+    $summary{errors} = '';
+    foreach my $key(keys(%error)) {
+        $summary{errors} .= $key . ':' . $error{$key} . "\n";
+    }
+}
 
 print JSON->new->pretty->encode(\%summary);
 
