@@ -342,3 +342,4 @@ function output(dirpath, load_result, checker_result, poster_result, callback){
 };
 
 prepare(load);
+
