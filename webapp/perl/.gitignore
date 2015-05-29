@@ -10,4 +10,4 @@ MANIFEST.bak
 extlibs
 *.sw[po]
 *~
-
+nytprof_report
