@@ -1,0 +1,82 @@
+!!! html
+html
+  head
+    meta(http-equiv="Content-Type", content="text/html", charset="utf-8")
+    title isucon now!
+    link(type="text/css", href="/css/jquery-ui-1.8.14.custom.css", rel="stylesheet")
+    style
+      body {margin: 10px auto 0 auto;}
+      #bunner {width: 100%; padding: 0 0 10px 0; text-align: center;}
+      #scoreboard {width: 100%; padding: 0 0 10px 0; text-align: center;}
+      table#waku {border: 1px solid black;}
+      tr.dan {height: 150px;}
+      td.team {width: 250px; text-align: center; border: 1px solid;}
+      td.highscore {background-color: orange;}
+      table.box {width: 100%;}
+      td.name {height: 40px; text-align: center; background-color: cyan; cursor: pointer;}
+      td.failing {background-color: red;}
+      td.latest {height: 35px; text-align: center; font-weight: bold; cursor: pointer; padding: 0; margin: 0;}
+      td.latest_at {height: 15px; text-align: center; padding: 0; margin: 0;}
+      td.highest {height: 20px; text-align: center; font-weight: bold; cursor: pointer;}
+      td.highest_at {height: 10px; text-align: center; padding: 0; margin: 0; padding: 0; margin: 0;}
+      td.bench {height: 20px; text-align: center; cursor: pointer;}
+      td.running {background-color: lime;}
+    script(type="text/javascript", src="/js/jquery-1.6.2.min.js")
+    script(type="text/javascript", src="/js/jquery-ui-1.8.14.custom.min.js")
+    script(type="text/javascript", src="/js/isucon.master.js")
+    // script(type="text/javascript", src="https://www.google.com/jsapi")
+  body
+    #bench_start_dialog(title="start benchmark", style="display: none;")
+      form#benchstart(method="POST")
+        ul(style="list-style-type: none;")
+          li#benchstart_team start teamNN benchmark
+          li
+            | password
+            input(type="password", name="pass")
+          li
+            | start in inf-mode
+            input(type="checkbox", name="infmode")
+    #bench_stop_dialog(title="stop benchmark", style="display: none;")
+      form#benchstop(method="POST")
+        ul(style="list-style-type: none;")
+          li#benchstop_team stop teamNN benchmark
+          li
+            | password
+            input(type="password", name="pass")
+          li
+            | stop gracefully
+            input(type="checkbox", name="gracefully", checked)
+    #result_display_dialog(title="benchmark result detail", style="display: none;")
+      table(style="width: 100%;")
+        tr
+          td(style="width: 50%; padding: 0 auto 0 0; margin: 0; valign: top;")
+            div#benchkind(style="font-weight: bold; vertical-align: text-top;")
+            pre#benchdetail
+          td(style="width: 50%; padding: 0 0 0 auto; margin: 0; border-left: 1px solid gray; vertical-align: text-top;")
+            div#checkerkind(style="font-weight: bold;")
+            pre#checkerdetail
+    #bunner
+      img(src="/images/isucon_title.jpg", width="125px", height="38px", style="border: none;")
+    #scoreboard
+      table#waku
+        - each row in [0]
+          tr.dan
+            - each col in [0]
+              - team = teams[row * 7 + col]
+              td.team(id="#{team.id}")
+                table.box(style="border: 0;")
+                  tr
+                    td.name.failing= team.name
+                  tr
+                    td.latest no tests ran
+                  tr
+                    td.latest_at at ...
+                  tr
+                    td.highest no tests successed
+                  tr
+                    td.highest_at at ...
+                  tr
+                    td.bench idle
+    #grapharea(style="display: none;")
+      #graph
+        | hoge
