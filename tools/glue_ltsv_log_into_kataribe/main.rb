@@ -15,6 +15,6 @@ while line = STDIN.gets.chomp
       parsed[:request_time]
     puts log
   rescue
-    warn 'parse error. #{line}'
+    warn "parse error. #{line}"
   end
 end
