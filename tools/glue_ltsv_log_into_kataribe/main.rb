@@ -1,9 +1,9 @@
 require 'ltsv'
 require 'pp'
 
-while line = STDIN.gets.chomp
+while line = STDIN.gets
   begin 
-    parsed = LTSV.parse(line).last
+    parsed = LTSV.parse(line.chomp).last
     log = parsed[:remote_addr] + " -" + " " + "-" + " " + 
       "[" + parsed[:time] + "]" + ' ' +
       '"' + parsed[:request_method] + ' ' +  parsed[:uri] + '"' + ' ' +
